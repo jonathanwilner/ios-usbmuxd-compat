@@ -1,7 +1,30 @@
 # ios-usbmuxd-compat
 
-A reusable Python framework, example application and Debian packaging reference
-for diagnosing iPhone USB connectivity on Linux. MIT licensed. Pre-1.0.
+A drop-in toolkit for developers shipping a Debian/Ubuntu app that needs iPhone
+USB access and may need an updated **usbmuxd**. MIT licensed. Pre-1.0.
+
+## Wrap your app
+
+Install the framework package alongside your app and your independently validated
+updated usbmuxd package. Change your app launcher to:
+
+```sh
+ios-usbmuxd-wrap --repair -- /usr/bin/your-app
+```
+
+The toolkit checks the current stack, requests a supported repair if needed,
+verifies connectivity, then runs your app as the current user. It owns the
+reversible service override and rollback. Your app keeps using the standard
+usbmuxd socket. PolicyKit may request administrator approval for repair.
+
+**You supply the validated updated daemon.** This repository supplies the wrapper,
+component packaging recipe and lifecycle machinery. Its sample daemon is an
+unvalidated build baseline and cannot be activated as shipped. A working stock
+daemon stays in use. This is a shared system daemon, not an app-private instance.
+
+Start with **[Wrap your app: five steps](docs/wrap-your-app.md)** and the
+[launcher/dependency templates](examples/app-wrapper/). The diagnostic demo below
+helps you evaluate the toolkit; it is not required by your app.
 
 **Hardware compatibility has not been validated by this project. No patched
 daemon is shipped or enabled by default.** Automated tests exercise diagnostic

@@ -7,6 +7,12 @@ not a hardware compatibility claim.
 Verification date: 6 Nov 2026. All 60 automated tests passed on each native
 Debian/Ubuntu target. Lint and the x86_64 Nix build/check passed.
 
+The app-wrapper update adds eight tests: all 68 tests and lint pass. Debian 12
+was rebuilt and passed the full lifecycle again, including installed wrapper
+launch as an ordinary user with explicit pending-device mode and blocked launch
+without that option. Other distribution rows below describe the original
+60-test baseline; GitHub CI reruns the matrix on each push.
+
 ## Target matrix
 
 | Target | Architecture | Native package lifecycle | Hardware and live systemd/udev |

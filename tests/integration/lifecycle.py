@@ -8,6 +8,11 @@ report = json.loads(subprocess.check_output(["iphone-connectivity-demo", "check"
 assert report["schema_version"] == 1
 assert report["status"] == "pending_device", report
 assert pathlib.Path("/usr/lib/ios-usbmuxd-compat/helper").is_file()
+assert pathlib.Path("/usr/bin/ios-usbmuxd-wrap").is_file()
+# Run as an ordinary user: no phone blocks by default, explicit pending mode launches.
+blocked = subprocess.run(["runuser", "-u", "nobody", "--", "ios-usbmuxd-wrap", "--", "/bin/true"])
+assert blocked.returncode == 75
+subprocess.run(["runuser", "-u", "nobody", "--", "ios-usbmuxd-wrap", "--allow-pending-device", "--", "/bin/true"], check=True)
 assert pathlib.Path("/lib/udev/rules.d/79-ios-usbmuxd-compat.rules").is_file()
 assert not pathlib.Path("/etc/systemd/system/usbmuxd.service.d/50-ios-usbmuxd-compat.conf").exists()
 subprocess.run(["iphone-connectivity-demo", "repair", "--dry-run"], check=True)

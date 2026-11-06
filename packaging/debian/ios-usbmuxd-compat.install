@@ -1,5 +1,6 @@
 usr/lib/python3*/dist-packages/ios_usbmuxd_compat*
 usr/bin/ios-usbmuxd-compat
+usr/bin/ios-usbmuxd-wrap
 packaging/helper usr/lib/ios-usbmuxd-compat/
 packaging/systemd/* lib/systemd/system/
 packaging/udev/* lib/udev/rules.d/

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=My iPhone App
+Exec=ios-usbmuxd-wrap --repair -- /usr/bin/my-app
+Terminal=true
+Categories=Utility;

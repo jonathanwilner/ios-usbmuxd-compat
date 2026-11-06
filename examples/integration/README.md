@@ -1,5 +1,8 @@
 # Integration examples
 
+Start with [the app wrapper](../../docs/wrap-your-app.md) for an existing executable.
+The examples here cover deeper API integration.
+
 See [the integration guide](../../docs/integration-guide.md) for the stable API,
 security boundaries and which files need adaptation.
 

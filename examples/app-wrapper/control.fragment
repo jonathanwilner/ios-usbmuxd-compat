@@ -1,0 +1,3 @@
+# Merge into your own binary package stanza. Rename my-app-usbmuxd to your
+# independently validated component package; it must use the fixed manifest layout.
+Depends: ${misc:Depends}, ios-usbmuxd-compat (>= 0.1.0), my-app-usbmuxd

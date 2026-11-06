@@ -1,5 +1,8 @@
 # Integrate the framework
 
+For the shortest path, start with [Wrap your app](wrap-your-app.md). Use the
+API below when your app needs custom protocol probes or its own diagnostic UI.
+
 ## Stable API
 
 Install `ios-usbmuxd-compat` as a Debian dependency or install the Python project
