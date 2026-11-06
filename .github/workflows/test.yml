@@ -1,0 +1,14 @@
+name: tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - run: python3 -m pip install --disable-pip-version-check 'jsonschema==4.23.0' 'ruff==0.9.10'
+      - run: ./scripts/test.sh
+      - name: Lint syntax and undefined names
+        run: |
+          python3 -m ruff check --select E9,F63,F7,F82 src tests examples

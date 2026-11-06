@@ -1,0 +1,18 @@
+[Unit]
+Description=Deferred iPhone compatibility check for USB device %I
+After=usbmuxd.service
+Wants=usbmuxd.service
+
+[Service]
+Type=oneshot
+DynamicUser=yes
+ExecStart=/usr/bin/ios-usbmuxd-compat check --json
+TimeoutStartSec=90
+SuccessExitStatus=1
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+RestrictAddressFamilies=AF_UNIX
+CapabilityBoundingSet=
+# Do not use PrivateDevices: diagnostics inspect host USB visibility/permissions.

@@ -1,0 +1,11 @@
+#!/bin/sh
+# The framework dependency installs shared device-event integration.
+# Your application's maintainer script must not call check, pair, or repair.
+# Add your usual debhelper expansion to the full maintainer script.
+set -e
+case "$1" in
+ configure)
+  # Optional local bookkeeping only. Missing hardware is normal.
+  ;;
+esac
+exit 0

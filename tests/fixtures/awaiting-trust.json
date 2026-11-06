@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_trust",
+  "device_connected": true,
+  "daemon_healthy": true,
+  "usbmux_transport": "working",
+  "pairing": "awaiting_trust",
+  "application_protocol": "not_tested",
+  "recommended_action": "accept_trust",
+  "requires_admin": false,
+  "message": "Accept Trust on the iPhone, then run pair and check again.",
+  "host": {
+    "socket": "working",
+    "conflicting_daemons": false,
+    "usb_devices": [
+      {
+        "ios_candidate": true,
+        "usb_access": false
+      }
+    ],
+    "systemd": {},
+    "packages": {},
+    "processes": [],
+    "preflight_pending_signature": false
+  },
+  "devices": [
+    {
+      "id": "device-1",
+      "pairing": "awaiting_trust",
+      "application_protocol": "not_tested",
+      "probes": [],
+      "status": "awaiting_trust"
+    }
+  ]
+}

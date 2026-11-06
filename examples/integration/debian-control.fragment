@@ -1,0 +1,5 @@
+# Merge into your application's existing binary package paragraph.
+# Keep the framework dependency in the package that needs diagnostics.
+Depends: ${misc:Depends}, ${python3:Depends}, ios-usbmuxd-compat (>= 0.1.0)
+Recommends: iphone-connectivity-demo
+# The optional validated daemon is deliberately not a dependency.

@@ -1,0 +1,3 @@
+# A new USB add event starts a short systemd task, never tests inside udev.
+# Kernel device name is used only as a systemd instance, never as a command argument.
+ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="05ac", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ios-usbmuxd-compat-check@%k.service"

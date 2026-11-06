@@ -1,0 +1,29 @@
+name: Diagnostic or packaging problem
+description: Report a reproducible framework problem without device secrets.
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Distribution, release, architecture and installed package versions. Omit serial numbers and UDIDs.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction and expected result
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Sanitized diagnostics
+      description: Include the versioned JSON report after reviewing it. Never attach pairing records, credentials or raw device journals.
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Evidence type
+      options:
+        - Physical iPhone
+        - Fixture tests
+        - Container or VM without hardware

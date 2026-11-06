@@ -1,0 +1,20 @@
+Source: ios-usbmuxd-compat
+Section: utils
+Priority: optional
+Maintainer: ios-usbmuxd-compat contributors <maintainers@example.invalid>
+Build-Depends: debhelper-compat (= 13), dh-python, python3-all, python3-setuptools, python3-wheel, python3-jsonschema, pybuild-plugin-pyproject
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: ios-usbmuxd-compat
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, usbmuxd, libimobiledevice-utils, polkitd | policykit-1, pkexec | policykit-1
+Description: reusable iPhone USB diagnostics and guarded repair framework
+ Inspects distribution usbmuxd, pairing and real lockdown communication.
+ Includes deferred diagnostics and a narrowly scoped privileged repair helper.
+
+Package: iphone-connectivity-demo
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, ios-usbmuxd-compat (= ${binary:Version})
+Description: example consumer of the iPhone USB compatibility framework
+ Command-line example for checking and repairing supported iPhone connections.

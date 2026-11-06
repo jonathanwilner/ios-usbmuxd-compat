@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+result
+result-*
+.pytest_cache/
+.ruff_cache/
+*.deb
+*.buildinfo
+*.changes
+*.dsc
+*.tar.xz
+*.tar.gz

@@ -1,0 +1,7 @@
+usr/lib/python3*/dist-packages/ios_usbmuxd_compat*
+usr/bin/ios-usbmuxd-compat
+packaging/helper usr/lib/ios-usbmuxd-compat/
+packaging/systemd/* lib/systemd/system/
+packaging/udev/* lib/udev/rules.d/
+packaging/polkit/* usr/share/polkit-1/actions/
+schemas/*.json usr/share/ios-usbmuxd-compat/schemas/

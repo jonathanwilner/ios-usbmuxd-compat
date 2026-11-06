@@ -1,0 +1,38 @@
+name: Build release candidate
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing v-prefixed version tag to build (does not publish a release)
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Verify version, build and checksum
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          python3 - <<'PY'
+          import configparser, os, pathlib, re
+          tag = os.environ['RELEASE_TAG']
+          version = re.search(r'\(([^)]+)\)', pathlib.Path('packaging/debian/changelog').read_text()).group(1)
+          config = configparser.ConfigParser()
+          config.read('setup.cfg')
+          assert config['metadata']['version'] == version
+          assert tag == 'v' + version
+          PY
+          ./scripts/container-deb-test.sh debian:12
+          git rev-parse HEAD > dist/debian-12/SOURCE_COMMIT
+          docker image inspect debian:12 --format '{{json .RepoDigests}}' > dist/debian-12/BUILD_IMAGE
+          (cd dist/debian-12 && sha256sum ./*.deb > SHA256SUMS)
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-candidate
+          path: dist/

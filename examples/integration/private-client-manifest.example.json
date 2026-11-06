@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "validated": false,
+  "architecture": "x86_64",
+  "distribution": "debian",
+  "release": "12",
+  "repair_statuses": ["client_library_incompatible"],
+  "package_versions": {"replace": "exact diagnostics.host.packages object"},
+  "provenance": "Replace with immutable source revisions, source hashes and build records",
+  "hardware_validation": "Replace only after the manual protocol test plan passes",
+  "sha256": {
+    "bin/idevice_id": "REPLACE_WITH_SHA256",
+    "bin/idevicepair": "REPLACE_WITH_SHA256",
+    "bin/ideviceinfo": "REPLACE_WITH_SHA256"
+  }
+}

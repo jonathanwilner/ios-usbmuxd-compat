@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+case "$1" in
+ configure)
+  # Host-only, bounded and best effort. Never contact a phone during installation.
+  timeout 8 /usr/lib/ios-usbmuxd-compat/helper host-check >/dev/null 2>&1 || true
+  if command -v udevadm >/dev/null 2>&1; then udevadm control --reload-rules || true; fi
+  ;;
+esac
+#DEBHELPER#
+exit 0

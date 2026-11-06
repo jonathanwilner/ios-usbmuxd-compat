@@ -1,0 +1,5 @@
+ios-usbmuxd-compat (0.1.0) unstable; urgency=medium
+
+  * Initial reference implementation. Hardware compatibility remains unverified.
+
+ -- ios-usbmuxd-compat contributors <maintainers@example.invalid>  Fri, 06 Nov 2026 12:00:00 +0000

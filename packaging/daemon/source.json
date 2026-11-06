@@ -1,0 +1,10 @@
+{
+  "upstream": "https://github.com/libimobiledevice/usbmuxd",
+  "commit": "79c8b38d1488a6b07e1e68f39d8caec3f1a45622",
+  "version": "1.1.1",
+  "url": "https://github.com/libimobiledevice/usbmuxd/archive/79c8b38d1488a6b07e1e68f39d8caec3f1a45622.tar.gz",
+  "sha256": "a4312626468a2c65850fda68191d461873a47bff79f05d82bea7c17e73e535eb",
+  "source_date_epoch": 1590451200,
+  "patches": [],
+  "validated": false
+}

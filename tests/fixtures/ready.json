@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "device_connected": true,
+  "daemon_healthy": true,
+  "usbmux_transport": "working",
+  "pairing": "paired",
+  "application_protocol": "working",
+  "recommended_action": "none",
+  "requires_admin": false,
+  "message": "iOS lockdown and all application probes succeeded.",
+  "host": {
+    "socket": "working",
+    "conflicting_daemons": false,
+    "usb_devices": [
+      {
+        "ios_candidate": true,
+        "usb_access": false
+      }
+    ],
+    "systemd": {},
+    "packages": {},
+    "processes": [],
+    "preflight_pending_signature": false
+  },
+  "devices": [
+    {
+      "id": "device-1",
+      "pairing": "paired",
+      "application_protocol": "working",
+      "probes": [
+        {
+          "name": "lockdown",
+          "status": "working"
+        }
+      ],
+      "status": "ready"
+    }
+  ]
+}

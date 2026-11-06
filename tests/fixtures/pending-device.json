@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "pending_device",
+  "device_connected": false,
+  "daemon_healthy": true,
+  "usbmux_transport": "not_tested",
+  "pairing": "not_tested",
+  "application_protocol": "not_tested",
+  "recommended_action": "connect_device",
+  "requires_admin": false,
+  "message": "Connect an unlocked iPhone with a data-capable USB cable.",
+  "host": {
+    "socket": "working",
+    "conflicting_daemons": false,
+    "usb_devices": [],
+    "systemd": {},
+    "packages": {},
+    "processes": [],
+    "preflight_pending_signature": false
+  },
+  "devices": []
+}

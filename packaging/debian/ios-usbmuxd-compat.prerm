@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+case "$1" in
+ remove|deconfigure)
+  # A rollback conflict must remain visible; do not silently discard its journal.
+  /usr/lib/ios-usbmuxd-compat/helper rollback
+  ;;
+esac
+#DEBHELPER#
+exit 0

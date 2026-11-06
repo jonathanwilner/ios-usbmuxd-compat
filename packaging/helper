@@ -1,0 +1,3 @@
+#!/usr/bin/python3 -I
+from ios_usbmuxd_compat.remediation.helper import main
+raise SystemExit(main())

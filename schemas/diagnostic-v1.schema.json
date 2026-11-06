@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/ios-usbmuxd-compat/diagnostic-v1.schema.json",
+  "title": "iOS USB compatibility diagnostic report version 1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "device_connected",
+    "daemon_healthy",
+    "requires_admin",
+    "host",
+    "devices",
+    "usbmux_transport",
+    "pairing",
+    "application_protocol",
+    "recommended_action",
+    "message"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "ready",
+        "pending_device",
+        "awaiting_trust",
+        "device_locked",
+        "pairing_required",
+        "trust_rejected",
+        "permission_denied",
+        "client_library_incompatible",
+        "daemon_failure",
+        "preflight_failure",
+        "device_lost",
+        "preflight_timeout",
+        "manual_intervention_required",
+        "application_protocol_failure",
+        "pairing_protocol_error",
+        "repair_failed",
+        "repair_required"
+      ]
+    },
+    "device_connected": {
+      "type": "boolean"
+    },
+    "daemon_healthy": {
+      "type": "boolean"
+    },
+    "requires_admin": {
+      "type": "boolean"
+    },
+    "host": {
+      "type": "object"
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "pairing",
+          "application_protocol",
+          "status",
+          "probes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^device-[0-9]+$"
+          },
+          "pairing": {
+            "type": "string"
+          },
+          "application_protocol": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ready",
+              "pending_device",
+              "awaiting_trust",
+              "device_locked",
+              "pairing_required",
+              "trust_rejected",
+              "permission_denied",
+              "client_library_incompatible",
+              "daemon_failure",
+              "preflight_failure",
+              "device_lost",
+              "preflight_timeout",
+              "manual_intervention_required",
+              "application_protocol_failure",
+              "pairing_protocol_error",
+              "repair_failed",
+              "repair_required"
+            ]
+          },
+          "probes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "status"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "usbmux_transport": {
+      "type": "string"
+    },
+    "pairing": {
+      "type": "string"
+    },
+    "application_protocol": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}
