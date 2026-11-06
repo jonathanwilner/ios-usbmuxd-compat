@@ -33,7 +33,7 @@ provide additional validation opportunities.
 Build in a Debian or Ubuntu VM. The resulting `.deb` files do not need Nix.
 
 ```sh
-git clone https://github.com/<owner>/ios-usbmuxd-compat.git
+git clone https://github.com/jonathanwilner/ios-usbmuxd-compat.git
 cd ios-usbmuxd-compat
 sudo apt-get update
 sudo apt-get install build-essential debhelper dh-python python3-all \
