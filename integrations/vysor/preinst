@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+case "$1" in
+ install|upgrade)
+  path=/usr/share/applications/vysorapp.desktop
+  owner=$(dpkg-divert --listpackage "$path")
+  if [ -n "$owner" ] && [ "$owner" != vysor-usb-compat ]; then
+    echo 'Vysor desktop entry has an administrator or other package diversion; preserve it and resolve manually.' >&2
+    exit 1
+  fi
+  dpkg-divert --package vysor-usb-compat --add --rename --divert "$path.distrib" "$path"
+ ;;
+esac

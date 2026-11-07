@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Vysor
+Exec=/usr/bin/vysor-usb %U
+Terminal=true
+Type=Application
+Icon=vysorapp
+StartupWMClass=Vysor
+Comment=Vysor with managed iPhone USB setup
+Categories=Utility;

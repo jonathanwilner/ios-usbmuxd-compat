@@ -22,6 +22,8 @@ component packaging recipe and lifecycle machinery. Its sample daemon is an
 unvalidated build baseline and cannot be activated as shipped. A working stock
 daemon stays in use. This is a shared system daemon, not an app-private instance.
 
+For Vysor, use the [one-install bundle builder](integrations/vysor/README.md).
+
 Start with **[Wrap your app: five steps](docs/wrap-your-app.md)** and the
 [launcher/dependency templates](examples/app-wrapper/). The diagnostic demo below
 helps you evaluate the toolkit; it is not required by your app.

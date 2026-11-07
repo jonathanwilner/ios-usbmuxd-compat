@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+case "$1" in
+ remove|purge|abort-install)
+  path=/usr/share/applications/vysorapp.desktop
+  if [ "$(dpkg-divert --listpackage "$path")" = vysor-usb-compat ]; then
+    dpkg-divert --package vysor-usb-compat --remove --rename --divert "$path.distrib" "$path"
+  fi
+ ;;
+esac

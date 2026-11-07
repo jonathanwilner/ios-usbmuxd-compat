@@ -1,0 +1,3 @@
+#!/bin/sh
+# App arguments stay unprivileged. The framework helper only receives fixed actions.
+exec /usr/bin/ios-usbmuxd-wrap --repair --allow-pending-device -- /opt/Vysor/vysorapp "$@"
