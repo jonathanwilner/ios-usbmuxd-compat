@@ -27,5 +27,30 @@ Vysor adapter with a synthetic vendor package across the five target distributio
 that fixture carries no proprietary code and does not prove Vysor runtime support.
 
 Not exercised: graphical Vysor launch, iPhone mirroring/control, hardware pairing,
-live systemd activation or PolicyKit UI. No updated daemon is approved or bundled.
+live systemd activation or PolicyKit UI. The original stock-only bundles contain no updated daemon. The candidate bundles
+described below include an unapproved updated daemon that remains inactive.
 The wrapper's lockdown query is not a Vysor mirroring acceptance test.
+
+## Pinned upstream candidate installer
+
+Source: usbmuxd `3ded00c9985a5108cfc7591a309f9a23d57a8cba`, with six pinned
+upstream sources recorded in `packaging/daemon/candidate-sources.json`.
+All candidate manifests remain `validated: false`.
+
+Passed in this implementation session:
+
+- Native Debian 12 and Ubuntu 24.04 amd64 package builds with private libraries.
+- Debian 12 and Ubuntu 24.04: daemon startup, standard socket ListDevices reply,
+  private client enumeration, complete manifest hashes and rejection of
+  unvalidated activation. Candidate package reinstall, upgrade, removal and purge
+  preserve stock daemon bytes and pairing records.
+- Debian 12 and Ubuntu 24.04: actual Vysor installer with candidate package, repeated installation,
+  companion upgrade, removal/purge, stock desktop and pairing preservation,
+  and administrator diversion rejection.
+- Nix x86_64-linux candidate build; aarch64-linux derivation evaluation only.
+- 68 framework unit tests.
+
+Corresponding source accompanies each candidate installer. No Vysor assets are
+committed to the public repository. No connected iPhone was available on
+Armstrong or Goran. Live systemd replacement, Trust, Vysor GUI and mirroring
+remain NOT RUN. The original daemon remains untouched on both hosts.

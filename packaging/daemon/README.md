@@ -43,3 +43,7 @@ with upstream 1.1.1 names. Its transparent `postPatch` prefixes usbmuxd's local
 build-only namespace adjustment, with no preflight or pairing behavior change.
 The native Debian 12 recipe builds without that adjustment. Neither artifact is
 a validated compatibility replacement.
+
+For the newer pinned upstream source and its private dependency stack, use the
+[current candidate recipe](CANDIDATE.md). The older baseline above remains an
+educational reference. Both require independent hardware validation.

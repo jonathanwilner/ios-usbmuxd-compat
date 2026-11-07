@@ -49,3 +49,20 @@ UDIDs and pairing data from the published report.
 Mark each result PASS, FAIL or NOT RUN with a reason. Publish compatibility
 claims only for the exact hardware/OS combination that passed. A socket-health
 pass with an unplugged phone is pending hardware validation.
+
+## Current upstream candidate and Vysor
+
+Before approving the current candidate, record the stock stack's actual failure
+and compare it with pinned upstream `3ded00c` on the same host and iPhone.
+Use a dedicated test host for manual candidate evaluation before producing any
+validated manifest. Preserve the original service arguments and account; stop
+the stock daemon before starting the candidate. Never run both against the USB
+device. Retain original pairing records and return the host to stock afterward.
+A healthy socket with a preflight/Trust failure currently requires manual
+investigation: the automatic daemon strategy accepts only the narrowly defined
+socket-failure signatures in `docs/daemon-validation.md`.
+
+After lockdown succeeds, launch Vysor through `vysor-usb`. Verify discovery,
+actual screen mirroring, input, disconnect/reconnect, and a second app launch.
+Record Vysor version and whether its embedded client uses the system socket.
+A successful `ideviceinfo` call alone does not establish Vysor acceptance.

@@ -17,9 +17,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--vysor', required=True, type=Path)
     parser.add_argument('--framework', required=True, type=Path)
-    parser.add_argument('--daemon', type=Path, help='Optional independently validated native daemon component')
+    parser.add_argument('--daemon', type=Path, help='Optional native daemon component; activation still requires validation')
+    parser.add_argument('--daemon-source', type=Path, help='Required corresponding source archive when including a daemon')
     parser.add_argument('--output', required=True, type=Path)
     args = parser.parse_args()
+    if args.daemon and (not args.daemon_source or not args.daemon_source.is_file()):
+        parser.error('--daemon requires --daemon-source for corresponding source distribution')
+    if args.daemon_source and not args.daemon:
+        parser.error('--daemon-source requires --daemon')
     inputs = [(args.vysor.resolve(), 'vysor', 'vysor.deb'),
               (args.framework.resolve(), 'ios-usbmuxd-compat', 'framework.deb')]
     if args.daemon:
@@ -85,6 +90,8 @@ Description: Vysor launcher with managed iPhone USB diagnostics
         (bundle / 'packages.json').write_text(json.dumps(provenance, indent=2) + '\n')
         for name in ('install.sh', 'README.md'):
             shutil.copy2(source / name, bundle / name)
+        if args.daemon_source:
+            shutil.copyfile(args.daemon_source, bundle / 'daemon-corresponding-source.tar.gz')
         (bundle / 'ARCHITECTURE').write_text(arch + '\n')
         (bundle / 'SHA256SUMS').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest() + '  ' + p.name + '\n' for p in sorted(bundle.iterdir()) if p.is_file()))
         shutil.copytree(bundle, output)

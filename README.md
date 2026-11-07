@@ -17,9 +17,10 @@ verifies connectivity, then runs your app as the current user. It owns the
 reversible service override and rollback. Your app keeps using the standard
 usbmuxd socket. PolicyKit may request administrator approval for repair.
 
-**You supply the validated updated daemon.** This repository supplies the wrapper,
-component packaging recipe and lifecycle machinery. Its sample daemon is an
-unvalidated build baseline and cannot be activated as shipped. A working stock
+**A maintainer must validate the updated daemon.** This repository supplies the
+wrapper, lifecycle machinery and a [pinned upstream candidate with private
+libraries](packaging/daemon/CANDIDATE.md). The candidate cannot be activated as
+shipped until hardware validation approves the exact target configuration. A working stock
 daemon stays in use. This is a shared system daemon, not an app-private instance.
 
 For Vysor, use the [one-install bundle builder](integrations/vysor/README.md).

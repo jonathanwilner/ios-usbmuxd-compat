@@ -35,6 +35,23 @@
         default = framework;
         ios-usbmuxd-compat = framework;
         iphone-connectivity-demo = framework;
+        usbmuxd-candidate = let
+          lock = builtins.fromJSON (builtins.readFile ./packaging/daemon/candidate-sources.json);
+          source = builtins.elemAt lock.sources 5;
+        in pkgs.usbmuxd.overrideAttrs (old: {
+          pname = "usbmuxd-unvalidated-candidate";
+          version = source.version;
+          src = pkgs.fetchurl { inherit (source) url sha256; name = "usbmuxd-${source.commit}.tar.gz"; };
+          patches = [];
+          postPatch = ''
+            echo '${source.version}' > .tarball-version
+          '';
+          postInstall = (old.postInstall or "") + ''
+            mkdir -p $out/share/doc/usbmuxd
+            cp ${./packaging/daemon/candidate-sources.json} $out/share/doc/usbmuxd/source-lock.json
+            echo 'Unvalidated candidate; no automatic activation.' > $out/share/doc/usbmuxd/VALIDATION
+          '';
+        });
         usbmuxd-reference = pkgs.stdenv.mkDerivation {
           pname = "usbmuxd-unvalidated-reference";
           version = "1.1.1";

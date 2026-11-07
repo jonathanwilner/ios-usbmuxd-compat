@@ -1,0 +1,23 @@
+name: Upstream daemon candidate
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ['debian:12', 'ubuntu:24.04']
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - run: ./scripts/container-deb-test.sh '${{ matrix.image }}'
+      - run: ./scripts/build-candidate-container.sh '${{ matrix.image }}'
+      - name: Verify native daemon socket and fail-closed manifest
+        run: |
+          directory=$(printf '%s' '${{ matrix.image }}' | tr : -)
+          ./scripts/test-candidate-container.sh '${{ matrix.image }}' "dist/$directory/ios-usbmuxd-compat_0.1.0_all.deb" dist/candidate/ios-usbmuxd-compat-daemon_*.deb
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: unvalidated-daemon-${{ strategy.job-index }}
+          path: dist/candidate/

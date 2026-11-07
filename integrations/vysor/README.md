@@ -71,3 +71,18 @@ Package and container checks can prove installation and launcher wiring. They
 cannot establish Electron desktop launch, iPhone mirroring, device control, live
 systemd activation, or a validated usbmuxd fix. Run the hardware plan with the
 actual Vysor build before claiming those outcomes.
+
+## Bundle the current upstream daemon candidate
+
+Build the candidate with `scripts/build-candidate-container.sh` from the repository
+root. Then use `build-installer.py` with these additional arguments:
+
+```sh
+--daemon dist/candidate/ios-usbmuxd-compat-daemon_1.1.1+git20251206.3ded00c-1_amd64.deb \
+--daemon-source dist/candidate/candidate-corresponding-source.tar.gz
+```
+
+The installer includes corresponding source and checksums. This candidate is
+installed in isolation and remains inactive until its validation manifest passes
+the framework's checks. Installing it does not claim modern-iPhone compatibility.
+See [candidate build and validation](../../packaging/daemon/CANDIDATE.md).
